@@ -18,6 +18,7 @@ import os
 # may need to modify these variables
 yolov5_weight_file = 'rider_helmet_number_small.pt' # ... may need full path
 conf_set = 0.35  # Confident score of detection
+frame_size = (800, 480)# (1024, 576) 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = attempt_load(yolov5_weight_file, map_location=device)
@@ -50,7 +51,8 @@ def object_detection(frame):
 				detection_result.append([x1, y1, x2, y2, conf, c])
 				
 				frame = cv2.rectangle(frame, (x1, y1), (x2, y2), (255,0,0), 1) # box
-				frame = cv2.putText(frame, f'{names[c]} {str(conf)}', (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255), 1, cv2.LINE_AA)
+				if c!=1: #head
+					frame = cv2.putText(frame, f'{names[c]} {str(conf)}', (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255), 1, cv2.LINE_AA)
 
 	return (frame, detection_result)
 
@@ -58,8 +60,9 @@ def object_detection(frame):
 
 ######################################################## Image classifier #############################
 
+head_classification_threshold = 3.9
 labels = ['helmet', 'no helmet']
-model2 = torch.load('helment_no_helmet98.6.pth', map_location=device) 
+model2 = torch.load('helment_no_helmet98.6.pth', map_location=device)  # ... may need full path
 model2.eval()
 
 transform = transforms.Compose([
@@ -78,12 +81,12 @@ def img_classify(frame):
 
 	prediction_conf = sorted(prediction[0]) 
 	cs = (prediction_conf[-1]-prediction_conf[-2]).item() # confident score
-	print(cs)
+	print(cs) 
 	# provide a threshold value of classification prediction as cs
-	if cs > 3.4: #< --- Classification confident score. Need to adjust, this value
-		return True if result_idx == 0 else False
+	if cs > head_classification_threshold: #< --- Classification confident score. Need to adjust, this value
+		return [True, cs] if result_idx == 0 else [False, cs]
 	else:
-		return None
+		return [None, cs]
 
 #########################################################
 # Return::: Is this small box inside this big box?
@@ -104,15 +107,15 @@ def main(source, show_img=False, save_img=False):
 		ret, frame = cap.read()
 		if ret == True:
 			# Some list of shape yolov5 except
-			# 1824, 1376
-			# 1024, 576
-			# 800, 480
+			# 1824, 1376 
+			# 1024, 576 # 4.0
 			# 928, 544
-			# 384 288
+			# 800, 480 # 
 			# 416, 320
+			# 384 288 
 			# 320, 256
 			# 256, 192
-			frame = cv2.resize(frame, (1024, 576))  # resizing image
+			frame = cv2.resize(frame, frame_size)  # resizing image
 			orifinal_frame = frame.copy()
 			frame, results = object_detection(frame) 
 
@@ -139,14 +142,17 @@ def main(source, show_img=False, save_img=False):
 							head_img = orifinal_frame[y1h:y2h, x1h:x2h]
 							helmet_present = img_classify(head_img)
 						except:
-							helmet_present = None
+							helmet_present[0] = None
 
-						if  helmet_present == True: # if helmet present
+						if  helmet_present[0] == True: # if helmet present
 							frame = cv2.rectangle(frame, (x1h, y1h), (x2h, y2h), (0,255,0), 1)
-						elif helmet_present == None: # Poor prediction
+							frame = cv2.putText(frame, f'{round(helmet_present[1],1)}', (x1h, y1h), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255), 1, cv2.LINE_AA)
+						elif helmet_present[0] == None: # Poor prediction
 							frame = cv2.rectangle(frame, (x1h, y1h), (x2h, y2h), (0, 255, 255), 1)
-						elif helmet_present == False:
+							frame = cv2.putText(frame, f'{round(helmet_present[1],1)}', (x1h, y1h), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255), 1, cv2.LINE_AA)
+						elif helmet_present[0] == False:
 							frame = cv2.rectangle(frame, (x1h, y1h), (x2h, y2h), (0, 0, 255), 1)
+							frame = cv2.putText(frame, f'{round(helmet_present[1],1)}', (x1h, y1h), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255), 1, cv2.LINE_AA)
 							try:
 								cv2.imwrite(f'riders_pictures/{time_stamp}.jpg', frame[y1r:y2r, x1r:x2r])
 							except:
@@ -164,7 +170,7 @@ def main(source, show_img=False, save_img=False):
 			if save_img:
 				cv2.imwrite('Entire frame.jpg', frame)
 			if show_img:
-				frame = cv2.resize(frame, (640, 380))  # resizing to fit on computer screen
+				frame = cv2.resize(frame, (900, 450))  # resizing to fit on computer screen
 				cv2.imshow('Entire frame.jpg', frame)
 
 				if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -177,6 +183,6 @@ def main(source, show_img=False, save_img=False):
 	cv2.destroyAllWindows()
 
 
-# main('2.jpg',save_img=True) # from image
+# main('1.jpg',save_img=True) # from image
 main('vv2.MOV', show_img=True) # from video
 # main(0, show_img=True) # from webcam
