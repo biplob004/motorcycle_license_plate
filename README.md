@@ -6,16 +6,26 @@ In this project i am using yolv5 algorithm to detect rider, licence plate and ri
 # Download Model and other necessary files from link below:
 After downloading these files put them all in the main folder and now you can run the code.
 
+
 yolov5 weight file for motorcycle rider, license plate and head detection: 
+
 Small verion:
+
 https://drive.google.com/file/d/1LbX-YRBTgJZEIqQqmCpNq4CNQzoiA8p5/view?usp=sharing
+
+
 Medium Version:
+
 https://drive.google.com/file/d/16ZDjUcX7vXQYPJ557dooN0em4mJmbJt7/view?usp=sharing
 
+
 Input video file:
+
 https://drive.google.com/file/d/1S5l8zUSj9mxC31P5ArWi1lmOZVWB7TYa/view?usp=sharing
 
+
 Output video file example labeled with bounding boxes:
+
 https://drive.google.com/file/d/1IfvjndrMTEL_vmIoflV1aUWS7Bk7IocD/view?usp=sharing
 
 
