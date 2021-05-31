@@ -16,7 +16,7 @@ import os
 
 
 # may need to modify these variables
-yolov5_weight_file = 'rider_helmet_number.pt' # ... may need full path
+yolov5_weight_file = 'rider_helmet_number_small.pt' # ... may need full path
 conf_set = 0.35  # Confident score of detection
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -164,7 +164,7 @@ def main(source, show_img=False, save_img=False):
 			if save_img:
 				cv2.imwrite('Entire frame.jpg', frame)
 			if show_img:
-				frame = cv2.resize(frame, (640, 380)) # resizing to fit on computer screen
+				frame = cv2.resize(frame, (640, 380))  # resizing to fit on computer screen
 				cv2.imshow('Entire frame.jpg', frame)
 
 				if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -173,11 +173,10 @@ def main(source, show_img=False, save_img=False):
 		else:
 			break
 
-
 	cap.release()
 	cv2.destroyAllWindows()
 
 
-main('2.jpg',save_img=True) # from image
-# main('../2.MOV', show_img=True) # from video
+# main('2.jpg',save_img=True) # from image
+main('vv2.MOV', show_img=True) # from video
 # main(0, show_img=True) # from webcam
