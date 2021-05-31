@@ -18,6 +18,9 @@ Medium Version:
 
 https://drive.google.com/file/d/16ZDjUcX7vXQYPJ557dooN0em4mJmbJt7/view?usp=sharing
 
+Classification Model: (resnet50)
+https://drive.google.com/file/d/1OuOpgq99E5VKPtwUuFZ0GGety3YWjIQn/view?usp=sharing
+
 
 Input video file:
 
@@ -27,6 +30,8 @@ https://drive.google.com/file/d/1S5l8zUSj9mxC31P5ArWi1lmOZVWB7TYa/view?usp=shari
 Output video file example labeled with bounding boxes:
 
 https://www.youtube.com/embed/vFNiyS7SGg8
+
+
 
 
 
