@@ -19,6 +19,7 @@ Medium Version:
 https://drive.google.com/file/d/16ZDjUcX7vXQYPJ557dooN0em4mJmbJt7/view?usp=sharing
 
 Classification Model: (resnet50)
+
 https://drive.google.com/file/d/1OuOpgq99E5VKPtwUuFZ0GGety3YWjIQn/view?usp=sharing
 
 
