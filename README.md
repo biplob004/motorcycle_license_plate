@@ -9,7 +9,7 @@ After downloading these files put them all in the main folder and now you can ru
 
 yolov5 weight file for motorcycle rider, license plate and head detection: 
 
-Small verion:
+Small version:
 
 https://drive.google.com/file/d/1LbX-YRBTgJZEIqQqmCpNq4CNQzoiA8p5/view?usp=sharing
 
@@ -26,7 +26,9 @@ https://drive.google.com/file/d/1S5l8zUSj9mxC31P5ArWi1lmOZVWB7TYa/view?usp=shari
 
 Output video file example labeled with bounding boxes:
 
-https://drive.google.com/file/d/1IfvjndrMTEL_vmIoflV1aUWS7Bk7IocD/view?usp=sharing
+https://youtu.be/vFNiyS7SGg8
+
+
 
 
 
