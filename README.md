@@ -3,6 +3,10 @@ This is project is extracting motorcycle license plates if the rider or back sit
 
 In this project i am using yolv5 algorithm to detect rider, licence plate and riders head. Then using resnet50 image classifier, i classify wheather the rider is wearing a helmet or not. If not wearing a helmet then, it will save his licence plate number in a image folder, and also will capture rider image in a separate folder.
 
+
+https://github.com/biplob004/motorcycle_license_plate/blob/main/bike_gif.gif?raw=true
+
+
 # Download Model and other necessary files from link below:
 After downloading these files put them all in the main folder and now you can run the code.
 
