@@ -29,9 +29,6 @@ Classification Model: (resnet50)
 https://drive.google.com/file/d/1OuOpgq99E5VKPtwUuFZ0GGety3YWjIQn/view?usp=sharing
 
 
-Input video file:
-
-https://drive.google.com/file/d/1S5l8zUSj9mxC31P5ArWi1lmOZVWB7TYa/view?usp=sharing
 
 
 Output video file example labeled with bounding boxes:
