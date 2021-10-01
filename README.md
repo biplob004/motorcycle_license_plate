@@ -31,14 +31,5 @@ https://drive.google.com/file/d/1OuOpgq99E5VKPtwUuFZ0GGety3YWjIQn/view?usp=shari
 
 
 
-Output video file example labeled with bounding boxes:
-
-https://www.youtube.com/embed/vFNiyS7SGg8
-
-
-
-
-
-
 
 
