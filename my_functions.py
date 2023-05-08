@@ -14,7 +14,7 @@ import time
 yolov5_weight_file = 'rider_helmet_number_small.pt' # ... may need full path
 helmet_classifier_weight = 'helment_no_helmet98.6.pth'
 conf_set=0.35 
-frame_size=(800, 480) 
+frame_size=(900, 500) 
 head_classification_threshold= 3.0 # make this value lower if want to detect non helmet more aggresively;
 
 
